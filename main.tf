@@ -100,7 +100,7 @@ resource "google_compute_health_check" "autohealing" {
 resource "google_compute_instance_template" "gen1" {
   name = "${var.mig_name}-${var.hoenn}-tmpl"
   machine_type            = var.machine_type
-  metadata_startup_script = file("/startup/startup.sh")
+  metadata_startup_script = file("${path.module}/startup/startup.sh")
   region                  = var.hoenn
   tags                    = var.tags
   //[ "http-server","http","https","allow-iap-ssh","allow-http" ]
@@ -133,9 +133,9 @@ resource "google_compute_instance_template" "gen1" {
 #Instance Template II for Kanto Region
 resource "google_compute_instance_template" "gen2" {
 
-  name                    = "${var.mig_name}-${var.hoenn}-tmpl"
+  name                    = "${var.mig_name}-${var.kanto}-tmpl"
   machine_type            = var.machine_type
-  metadata_startup_script = file("/startup/startup.sh")
+  metadata_startup_script = file("${path.module}/startup/startup.sh")
   region                  = var.kanto
   tags                    = var.tags
   //[ "http-server","http","allow-incoming","allow-iap-ssh","allow-http"]
